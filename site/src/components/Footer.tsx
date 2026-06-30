@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <img
-            src="/assets/concept logo - no bg - white.png"
+            src="./assets/concept logo - no bg - white.png"
             alt="Civitech Global"
             className="h-8 w-8 opacity-80"
           />
