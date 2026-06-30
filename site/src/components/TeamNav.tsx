@@ -9,7 +9,7 @@ interface TeamNavProps {
 
 export default function TeamNav({ teams, activeTeam, onSelect }: TeamNavProps) {
   return (
-    <nav className="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
       <div className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
         {teams.map((team) => {
           const isActive = team.id === activeTeam;
@@ -18,7 +18,9 @@ export default function TeamNav({ teams, activeTeam, onSelect }: TeamNavProps) {
               key={team.id}
               onClick={() => onSelect(team.id)}
               className={`relative shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                isActive ? 'text-slate-50' : 'text-slate-400 hover:text-slate-200'
+                isActive
+                  ? 'text-slate-900 dark:text-slate-50'
+                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               {isActive && (

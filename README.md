@@ -1,6 +1,6 @@
 # Civitech Global — Members, Workflows & Career Roadmaps
 
-A modern, animated landing page that introduces every team and role at **Civitech Global**, complete with career roadmaps, daily interactions, best practices, and curated learning resources.
+A modern, animated landing page that introduces every team and role at **Civitech Global**, complete with career roadmaps, daily interactions, best practices, curated learning resources, and story-driven team/role pages.
 
 ## Live site
 
@@ -24,10 +24,18 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
   - Daily interactions with other roles
   - Best practices
   - Curated references and resources
+  - **A story-driven narrative page** explaining the role's journey and impact
+- For every team:
+  - **A story page** that introduces the team's purpose, culture, and place in Civitech Global
+- **Light and dark themes** with a persistent toggle
+- **Quick-view modal** for roles on the home page
+- **Dedicated URL routes** for every team and role (`/team/:teamId`, `/team/:teamId/:roleSlug`)
+- **GitHub Pages SPA fallback** via `404.html`
 
 ## Tech stack
 
 - [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [React Router](https://reactrouter.com/)
 - [Vite](https://vitejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Framer Motion](https://www.framer.com/motion/)
@@ -38,16 +46,21 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
 ```
 .
 ├── .github/workflows/deploy.yml   # GitHub Pages deployment workflow
+├── .gitignore
+├── README.md
 ├── scripts/
-│   ├── build_data.py              # Normalizes research JSON → site/src/data/teams.ts
-│   └── raw/                       # Raw research data (one JSON per team/source)
+│   ├── build_data.py              # Normalizes research JSON + stories → site/src/data/teams.ts
+│   └── raw/                       # Raw research data and generated stories
 ├── site/                          # Vite + React application
 │   ├── src/
-│   │   ├── components/            # React components (Hero, TeamSection, RoleModal, etc.)
+│   │   ├── components/            # React components (Hero, TeamSection, RoleModal, TeamPage, RolePage, etc.)
+│   │   ├── context/ThemeContext.tsx
 │   │   ├── data/teams.ts          # Generated typed data file
 │   │   ├── App.tsx
 │   │   └── main.tsx
-│   ├── public/assets/             # Company logos
+│   ├── public/
+│   │   ├── assets/                # Company logos
+│   │   └── 404.html               # SPA redirect helper for GitHub Pages
 │   ├── index.html
 │   ├── package.json
 │   ├── tailwind.config.js
@@ -69,9 +82,9 @@ npm run dev
 npm run build
 ```
 
-## Updating role data
+## Updating role data or stories
 
-1. Edit or replace the JSON files in `scripts/raw/`.
+1. Edit the JSON files in `scripts/raw/`.
 2. Regenerate the typed data file:
    ```bash
    py scripts/build_data.py

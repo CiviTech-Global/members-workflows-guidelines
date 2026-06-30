@@ -16,13 +16,13 @@ export default function InteractionList({ interactions }: InteractionListProps) 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.08 }}
-          className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5"
+          className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60"
         >
-          <div className="mb-2 flex items-center gap-2 text-cyan-400">
-            <Users className="h-4 w-4" />
-            <h4 className="font-semibold text-slate-100">{interaction.role}</h4>
+          <div className="mb-2 flex items-center gap-2">
+            <Users className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
+            <h4 className="font-semibold text-slate-900 dark:text-slate-100">{interaction.role}</h4>
           </div>
-          <p className="text-sm leading-relaxed text-slate-400">{interaction.description}</p>
+          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">{interaction.description}</p>
         </motion.div>
       ))}
     </div>

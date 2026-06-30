@@ -17,9 +17,11 @@ export interface Interaction {
 }
 
 export interface Role {
+  slug: string;
   title: string;
   shortTitle: string;
   summary: string;
+  story: string;
   responsibilities: string[];
   skills: string[];
   tools: string[];
@@ -33,6 +35,7 @@ export interface Team {
   id: string;
   name: string;
   originalName: string;
+  story: string;
   color: string;
   bg: string;
   border: string;
@@ -44,14 +47,17 @@ export const teams: Team[] = [
     "id": "product-strategy",
     "name": "Product Strategy & Experience",
     "originalName": "Ideation & Strategy",
+    "story": "The Product Strategy & Experience team is the compass of Civitech Global. We start every conversation with why—why a customer feels a pain point, why a market is shifting, and why a particular solution is worth building. Originally known as Ideation & Strategy, this team has grown into the place where curiosity meets clarity: product managers shape the roadmap, marketers craft the story, designers research and prototype experiences, and technical writers turn complexity into guidance. Together we translate fuzzy market signals into a confident product vision, then guard that vision through every trade-off, sprint, and launch.\n\nLiving at the intersection of customers, business, and engineering means our best work happens in the gaps between disciplines. We run user research, debate priorities, write requirements that respect feasibility, and build design systems that scale. We believe great products are not just shipped—they are understood, adopted, and loved. Our spirit is one of relentless empathy: we listen before we build, measure after we ship, and always return to the human outcome behind the metric.\n\nIf you join us, expect to ask hard questions, change your mind when the data changes, and become fluent in many dialects of the company. Whether you are sketching a prototype, refining a launch message, or prioritizing a backlog, you are helping Civitech Global turn ambitious ideas into products that matter.",
     "color": "text-cyan-400",
     "bg": "bg-cyan-500/10",
     "border": "border-cyan-500/20",
     "roles": [
       {
+        "slug": "product-manager",
         "title": "Product Manager",
         "shortTitle": "PM",
         "summary": "Defines product vision, strategy, and roadmap while aligning engineering, design, and business stakeholders to deliver user and business value.",
+        "story": "Product Managers at Civitech Global are the translators of possibility. In a typical week, you might interview customers, size a market opportunity, write user stories, debate scope with engineering, and review launch metrics with leadership. You own the 'what' and the 'why' behind the roadmap, balancing customer needs, business goals, and technical reality. Your tools—Jira, Productboard, Figma, Amplitude—are extensions of a mind trained to prioritize outcomes over outputs.\n\nWhen you arrive, you begin by learning: the product, the users, the metrics, and the rhythms of the teams around you. Over time you move from supporting backlog hygiene to owning a product area, defining strategy, mentoring other PMs, and eventually setting company-wide vision. Growth here is measured not by how many features you ship, but by how clearly you see the problem and how confidently you rally others around a solution. You will become a trusted partner to engineering, design, marketing, and executives—someone who makes hard trade-offs feel obvious in hindsight.",
         "responsibilities": [
           "Define product vision, strategy, and roadmap",
           "Prioritize features and manage the backlog",
@@ -162,9 +168,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "product-marketing-manager",
         "title": "Product Marketing Manager",
         "shortTitle": "PMM",
         "summary": "Bridges product, marketing, and sales to craft positioning, messaging, and go-to-market strategies that drive adoption and revenue.",
+        "story": "Product Marketing Managers are the voice that turns product capability into customer conviction. You research the market, craft positioning, build launch plans, create the collateral sales relies on, and analyze campaign performance to refine the next go-to-market motion. Your days blend storytelling with spreadsheets: one moment you are interviewing a customer for a case study, the next you are optimizing messaging based on conversion data.\n\nStarting out, you support launches, write content, and learn the competitive landscape. As you grow, you own the narrative for a product line, shape pricing and packaging, and build enablement programs that scale. The best PMMs at Civitech Global know the customer so well that they can anticipate objections before they arise and translate roadmap details into messages that resonate. You sit between product, sales, demand generation, and customer success, and your superpower is making everyone feel heard while moving the market forward.",
         "responsibilities": [
           "Develop positioning, messaging, and value propositions",
           "Plan and execute product launches",
@@ -275,9 +283,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "ux-ui-designer-user-researcher",
         "title": "UX/UI Designer & User Researcher",
         "shortTitle": "UX",
         "summary": "Researches user needs, designs intuitive interfaces, and validates solutions to create seamless digital experiences.",
+        "story": "UX/UI Designers and User Researchers are the advocates for the human on the other side of the screen. You run interviews, map journeys, sketch wireframes, prototype interactions, and validate solutions through usability tests. Your goal is not just to make things look good, but to make them feel inevitable—to remove friction until the product fits the user's mental model like a familiar tool.\n\nEarly in your journey, you sharpen your craft in Figma, conduct research under guidance, and contribute to a growing design system. With experience, you lead end-to-end design for entire product areas, mentor junior designers, and shape the design culture of the company. Collaboration is your constant companion: you work with product managers to define the right problem, engineers to understand feasibility, technical writers to align language, and researchers to ground decisions in evidence. At Civitech Global, design is not a final coat of paint; it is a way of thinking that runs through every product decision.",
         "responsibilities": [
           "Conduct user interviews, surveys, and usability tests",
           "Create personas, journey maps, and wireframes",
@@ -388,9 +398,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "technical-writer",
         "title": "Technical Writer",
         "shortTitle": "TW",
         "summary": "Creates clear, accurate documentation and enablement content that helps users adopt and succeed with the product.",
+        "story": "Technical Writers at Civitech Global turn complexity into clarity. You write and maintain product and API documentation, build onboarding guides, craft FAQs, and ensure that every instruction has been tested in a real environment. Behind the scenes, you organize information architecture, manage docs-as-code workflows, and use analytics to understand what readers actually need.\n\nWhen you start, you learn the product deeply and practice writing for the reader's task rather than the product's features. As you progress, you own documentation areas, define style and quality standards, and mentor others in the craft. Your closest partners are engineers, product managers, UX designers, and customer support—because the best docs arise from the gaps they see every day. Your work may not always be visible, but when a customer succeeds without calling support, or a developer ships an integration in hours instead of days, your impact is unmistakable.",
         "responsibilities": [
           "Write and maintain product and API documentation",
           "Create onboarding guides, tutorials, and FAQs",
@@ -506,14 +518,17 @@ export const teams: Team[] = [
     "id": "engineering",
     "name": "Engineering & Architecture",
     "originalName": "Development & Engineering",
+    "story": "The Engineering & Architecture team is where Civitech Global's ambitions take shape in code, systems, and reliable services. We design the platforms that others build on, write the applications customers use, secure and optimize the data that powers decisions, and embed directly with clients to solve real problems in production environments. From high-level architecture to front-end polish, from database performance to quality assurance, we treat engineering as both a craft and a responsibility.\n\nOur culture is built on intellectual honesty and shared ownership. Architects sketch systems that can grow; software engineers bring those systems to life; DBAs keep the data layer fast and safe; QA engineers protect our users from regressions; and Forward Deployed Engineers carry our platform into customer contexts and bring field wisdom back home. We review code with respect, document decisions with ADRs, automate what repeats, and never stop learning.\n\nJoining this team means you will solve hard problems with people who care about the details. You will debate trade-offs, debug at odd hours, celebrate clean abstractions, and see your work run in the real world. We do not just build software; we build trust—one commit, one test, one reliable deployment at a time.",
     "color": "text-violet-400",
     "bg": "bg-violet-500/10",
     "border": "border-violet-500/20",
     "roles": [
       {
+        "slug": "system-architect-solutions-architect",
         "title": "System Architect / Solutions Architect",
         "shortTitle": "Architect",
         "summary": "Designs high-level system structures and technology solutions that align business goals with scalable, reliable engineering.",
+        "story": "System Architects and Solutions Architects design the scaffolding on which Civitech Global's products stand. You translate business requirements into technology choices, define the overall architecture and tech stack, and make sure every solution is scalable, secure, and performant. Your days involve whiteboarding integration patterns, evaluating cloud platforms, reviewing designs with engineering teams, and documenting decisions in ADRs so future teams understand the 'why.'\n\nEarly in this path, you absorb design patterns, assist with solution documentation, and learn to communicate technical ideas to non-technical stakeholders. Over time, you own end-to-end solutions for products, lead complex enterprise architectures, and eventually set organization-wide standards. You are a bridge between product ambition and engineering reality, working closely with engineering managers, software engineers, DevOps, and SRE. The best architects do not just draw boxes and arrows; they create clarity that allows teams to move fast without breaking things.",
         "responsibilities": [
           "Define overall system architecture and tech stack",
           "Create solution designs for business requirements",
@@ -624,9 +639,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "software-engineer-frontend-backend-full-stack",
         "title": "Software Engineer (Frontend/Backend/Full-Stack)",
         "shortTitle": "Software Engineer",
         "summary": "Builds, tests, and maintains software applications across client-side, server-side, or both.",
+        "story": "Software Engineers are the builders at the center of Civitech Global. Whether you specialize in front-end interfaces, back-end services, or full-stack ownership, your job is to turn ideas into reliable, maintainable code. You implement features, design and consume APIs, review your peers' work, debug production issues, and contribute to automated testing and CI/CD pipelines. Your tools span IDEs, GitHub, React, Node.js, Python, Docker, and more.\n\nAs a junior engineer, you learn the codebase, ship features with mentorship, and soak up feedback. As you grow, you own larger pieces of the system, lead technical design, mentor others, and influence engineering strategy. You collaborate daily with product managers, designers, QA, and DevOps—because shipping great software is a team sport. At Civitech Global, we believe clean code, thorough tests, and respectful reviews are not bureaucratic overhead; they are how we show care for the people who will maintain what we build long after we move on.",
         "responsibilities": [
           "Write clean, maintainable, and efficient code",
           "Build user interfaces or server-side logic",
@@ -737,9 +754,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "database-administrator-dba",
         "title": "Database Administrator (DBA)",
         "shortTitle": "DBA",
         "summary": "Manages, secures, and optimizes databases to ensure data availability, integrity, and performance.",
+        "story": "Database Administrators are the quiet guardians of Civitech Global's data. You install, configure, and upgrade database systems; monitor performance; tune slow queries; and design backup, recovery, and disaster-recovery strategies that let the business sleep at night. Security, access controls, and automation are not afterthoughts—they are the core of your practice.\n\nStarting out, you assist with backups, monitoring, and basic troubleshooting while learning the personalities of PostgreSQL, MySQL, MongoDB, or cloud-managed services. As you advance, you manage production databases, optimize complex queries, lead high-availability migrations, and define data standards for the organization. You work hand-in-hand with software engineers on schema design, data engineers on pipelines, security on compliance, and DevOps on reliability. Your success is measured in milliseconds of latency, successful restores, and the confidence that the company's most valuable asset—its data—is safe.",
         "responsibilities": [
           "Install, configure, and upgrade database systems",
           "Monitor performance and tune queries",
@@ -850,9 +869,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "quality-assurance-qa-engineer-tester",
         "title": "Quality Assurance (QA) Engineer / Tester",
         "shortTitle": "QA Engineer",
         "summary": "Ensures software meets quality requirements by designing, executing, and automating tests throughout the development lifecycle.",
+        "story": "QA Engineers and Testers are the quality conscience of Civitech Global. You design test plans, write automated and manual tests, hunt regressions, and make sure every release meets real user needs. Your work begins early: you review requirements, clarify acceptance criteria, and integrate tests into CI/CD pipelines so issues are caught before they reach customers.\n\nIn the beginning, you master testing fundamentals, write clear bug reports, and learn the automation frameworks that power our regression suites. With experience, you design test architecture, mentor teammates, broaden coverage across APIs and databases, and lead risk-based prioritization. You partner closely with engineers, product managers, DevOps, and designers—because quality is not a final gate but a shared responsibility. When a release goes out smoothly, it is often because a QA engineer asked the right question at the right time.",
         "responsibilities": [
           "Create and maintain test plans, test cases, and test data",
           "Execute manual and automated functional, regression, and exploratory tests",
@@ -963,9 +984,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "forward-deployed-engineer-fde",
         "title": "Forward Deployed Engineer (FDE)",
         "shortTitle": "FDE",
         "summary": "Embeds with customers to build production-grade solutions using the company's platform while feeding field insights back to product teams.",
+        "story": "Forward Deployed Engineers are Civitech Global's boots on the ground and eyes in the field. You embed with customers, understand their workflows, and build production-grade solutions using our platform. Your work spans data pipelines, integrations, and AI/LLM applications, and you constantly feed what you learn back to product and engineering so the platform gets smarter for everyone.\n\nWhen you start, you learn the platform internals and support customer implementations. Soon you own end-to-end use cases, then lead complex deployments, mentor others, and shape reusable patterns that accelerate every future engagement. You collaborate with customers, product managers, software engineers, sales, and customer success. The best FDEs decompose ambiguous problems into scoped milestones, ship working code rather than demos, and document playbooks that turn one customer's breakthrough into everyone's advantage.",
         "responsibilities": [
           "Embed with customers to understand workflows and requirements",
           "Design and ship production code in client environments",
@@ -1081,14 +1104,17 @@ export const teams: Team[] = [
     "id": "operations",
     "name": "Platform Operations & Customer Success",
     "originalName": "Deployment & Operations",
+    "story": "The Platform Operations & Customer Success team is the steady heartbeat behind every Civitech Global experience. While other teams design and build, we make sure everything runs, stays secure, and delivers value to the people who depend on it. DevOps engineers automate the path from commit to production; security engineers defend our systems and data; and technical support and customer success managers turn every ticket, onboarding, and renewal into a chance to deepen trust.\n\nWe are pragmatists with a service mindset. We monitor, patch, automate, and respond. We write runbooks before we need them, model threats before they become incidents, and listen carefully when a customer is stuck. Our work is often invisible when it goes well, but that is exactly the point: reliability and peace of mind are the products we deliver.\n\nIf you are drawn to keeping promises, this team is for you. You will learn to think like an operator and an advocate—balancing infrastructure health with human relationships, security rigor with business speed, and short-term fixes with long-term resilience.",
     "color": "text-emerald-400",
     "bg": "bg-emerald-500/10",
     "border": "border-emerald-500/20",
     "roles": [
       {
+        "slug": "devops-engineer",
         "title": "DevOps Engineer",
         "shortTitle": "DevOps",
         "summary": "Bridges development and operations to automate, deploy, and maintain reliable software systems.",
+        "story": "DevOps Engineers build the invisible highways that carry Civitech Global's software from a developer's laptop to a reliable production environment. You design CI/CD pipelines, manage cloud infrastructure as code, monitor system health, automate deployments and rollbacks, and jump into incidents when things go sideways. Your goal is to make safe, fast delivery feel routine.\n\nEarly on, you learn Linux, scripting, container orchestration, and cloud fundamentals. As you grow, you architect infrastructure, implement immutable deployments, and optimize observability across the stack. You work daily with software engineers, security engineers, technical support, and product managers—translating release schedules into infrastructure capacity and turning production lessons into better automation. We believe that every manual step is a candidate for automation, and every incident is a chance to make the system more resilient.",
         "responsibilities": [
           "Build and maintain CI/CD pipelines",
           "Manage cloud infrastructure and IaC",
@@ -1199,9 +1225,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "security-engineer",
         "title": "Security Engineer",
         "shortTitle": "Security",
         "summary": "Protects systems, networks, and data by designing and operating defensive security controls.",
+        "story": "Security Engineers are the protectors of trust at Civitech Global. You design security architecture, run vulnerability assessments, monitor for threats, manage identity and access, review code and infrastructure for risks, and ensure we meet compliance standards. Your mindset is both proactive and responsive: you model threats before they materialize and respond calmly when alerts fire.\n\nStarting as a junior, you build fluency in networking, operating systems, cryptography, and secure coding. Over time, you operate SIEM tools, lead incident response, design enterprise controls, and define security strategy for the company. You partner with DevOps to embed security into pipelines, with engineers to guide secure development, with IT on patching and segmentation, and with legal and compliance on regulatory requirements. At Civitech Global, security is not a department that says no; it is a capability that helps the business move forward with confidence.",
         "responsibilities": [
           "Design and maintain security architecture",
           "Perform vulnerability assessments and patching",
@@ -1312,9 +1340,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "technical-support-customer-success-manager",
         "title": "Technical Support / Customer Success Manager",
         "shortTitle": "Support & Success",
         "summary": "Helps customers adopt the product, resolve issues, and maximize long-term value.",
+        "story": "Technical Support and Customer Success Managers are the human face of Civitech Global after the sale. You resolve support tickets, guide onboarding, monitor customer health, drive renewals, and turn feedback into product improvements. Your work lives at the intersection of empathy and troubleshooting—every conversation is a chance to reduce churn and deepen a relationship.\n\nEarly in your career, you learn the product inside out, handle tickets with patience, and build rapport one customer at a time. As you grow, you manage portfolios of accounts, lead renewal and adoption strategies, and build success programs that scale. You collaborate constantly with product managers, engineering, sales, and marketing—sharing what customers say, escalating bugs, identifying upsell opportunities, and capturing testimonials. The best people on this team make customers feel like partners, not accounts, and prove that success is something you deliver, not just something you hope for.",
         "responsibilities": [
           "Resolve technical support tickets",
           "Guide customers through onboarding and adoption",
@@ -1430,14 +1460,17 @@ export const teams: Team[] = [
     "id": "revenue",
     "name": "Revenue, Sales & Marketing",
     "originalName": "Go-to-Market, Sales & Promotion",
+    "story": "The Revenue, Sales & Marketing team is how Civitech Global grows its reach and earns the trust of the market. We are the storytellers, relationship builders, and ecosystem architects who connect the right organizations with the right solutions at the right time. Account executives lead thoughtful sales cycles, sales engineers translate technical depth into buyer confidence, marketing and communications specialists amplify our message across channels, and partnerships managers build networks that multiply our impact.\n\nWhat unites us is a belief that revenue is a byproduct of genuine value. We research before we pitch, listen before we recommend, and design go-to-market motions that respect the buyer's journey. We partner closely with product, engineering, and customer success so that every promise made in the market can be kept behind the scenes.\n\nJoining this team means becoming comfortable with ambiguity, energized by human connection, and disciplined about process. Whether you are closing a complex deal, building a campaign, or enabling a new partner, you are helping Civitech Global turn belief in our mission into sustainable, scalable growth.",
     "color": "text-amber-400",
     "bg": "bg-amber-500/10",
     "border": "border-amber-500/20",
     "roles": [
       {
+        "slug": "sales-manager-account-executive",
         "title": "Sales Manager / Account Executive",
         "shortTitle": "Account Executive",
         "summary": "Owns the full sales cycle from qualified lead to closed contract, acting as a trusted advisor who aligns the company's solution to the buyer's business outcomes and revenue targets.",
+        "story": "Sales Managers and Account Executives are the trusted advisors who connect Civitech Global's solutions to customer outcomes. You run discovery calls, qualify opportunities, map stakeholders, deliver tailored presentations, negotiate contracts, and close new business. Your days are a mix of research, conversation, and disciplined pipeline management in the CRM.\n\nYou may begin as an SDR learning prospecting and qualification, then move through smaller deals to complex enterprise cycles. At each stage, you sharpen discovery, value articulation, objection handling, and forecasting. You partner with sales engineers, marketers, partnerships managers, customer success, and revenue operations. The best sellers at Civitech Global disqualify poor fits early, multi-thread deals, and lead with business outcomes rather than product features. Your success is measured in revenue, but earned through trust.",
         "responsibilities": [
           "Run discovery calls to uncover buyer pain points, constraints, and business goals",
           "Qualify inbound leads and SDR handoffs using frameworks like BANT or MEDDPICC",
@@ -1582,9 +1615,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "sales-engineer",
         "title": "Sales Engineer",
         "shortTitle": "Sales Engineer",
         "summary": "Bridges deep product expertise and consultative selling by running demos, architecting solutions, and resolving technical objections to de-risk complex deals for buying committees.",
+        "story": "Sales Engineers bring technical depth and buyer empathy to the revenue process. You conduct technical discovery, design tailored demos and proofs of concept, respond to RFPs, and answer the hard questions from IT, security, and engineering stakeholders. You also build business cases and ROI models that make the value of Civitech Global tangible.\n\nStarting out, you build product knowledge and communication skills in technical support or as an associate SE. Over time, you own the technical sales cycle, handle enterprise evaluations, mentor junior SEs, and define best practices. You work alongside account executives, product managers, engineering, customer success, marketing, and partnerships. Your ability to translate complex capabilities into clear business value—and to keep demo environments reliable—often makes the difference between a deal that stalls and one that closes.",
         "responsibilities": [
           "Conduct technical discovery to understand client requirements, architecture, and integration needs",
           "Create and deliver tailored product demonstrations and proofs of concept (PoCs)",
@@ -1733,9 +1768,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "marketing-communications-specialist",
         "title": "Marketing & Communications Specialist",
         "shortTitle": "Marketing Specialist",
         "summary": "Drives brand awareness, demand generation, and audience engagement by creating and distributing compelling content across digital, social, and traditional channels while aligning messaging with business goals.",
+        "story": "Marketing & Communications Specialists are the storytellers who shape how the world sees Civitech Global. You develop campaigns, write content, manage social channels, plan events, support SEO and paid media, and measure performance so the next campaign is smarter than the last. You are part strategist, part writer, part analyst, and part project manager.\n\nEarly on, you execute tasks, schedule posts, draft emails, and learn the mechanics of campaign management. As you grow, you own channels, develop content strategy, and lead integrated launches. You collaborate closely with sales, sales engineers, partnerships, product, design, and revenue operations. Your work turns product updates into narratives, technical proof points into case studies, and brand voice into a consistent experience across every touchpoint. At Civitech Global, marketing is not noise—it is the art of connecting the right people with the right value at the right time.",
         "responsibilities": [
           "Develop and execute integrated marketing and communications campaigns",
           "Write and edit content for blogs, social media, emails, press releases, and websites",
@@ -1884,9 +1921,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "channel-partnerships-manager",
         "title": "Channel & Partnerships Manager",
         "shortTitle": "Partnerships Manager",
         "summary": "Builds and scales indirect revenue channels by identifying, recruiting, enabling, and managing strategic partners, resellers, and alliances that expand market reach and drive partner-sourced revenue.",
+        "story": "Channel & Partnerships Managers build the ecosystem that multiplies Civitech Global's reach. You identify and recruit partners, negotiate agreements, design enablement programs, run co-marketing and co-selling campaigns, and track partner-sourced revenue. Your work is part business development, part diplomacy, and part program design.\n\nWhen you start, you support partner operations and onboarding. As you grow, you own partner portfolios, manage strategic alliances, and eventually define the global partner strategy. You work with sales, marketing, sales engineers, product, legal, finance, and customer success. The best partnership managers create win-win incentives, protect against channel conflict, and invest in enablement before expecting pipeline. You help Civitech Global grow not just by selling directly, but by building a network of allies who extend our impact.",
         "responsibilities": [
           "Identify, evaluate, and recruit partners that align with company strategy and ICP",
           "Negotiate partnership agreements, terms, incentive structures, and co-sell frameworks",
@@ -2034,14 +2073,17 @@ export const teams: Team[] = [
     "id": "leadership",
     "name": "Delivery & Technical Leadership",
     "originalName": "Project Leadership & Management",
+    "story": "The Delivery & Technical Leadership team is the connective tissue that turns strategy into shipped outcomes and groups of talented individuals into high-performing teams. Technical Program Managers orchestrate complex initiatives across product, engineering, and operations—managing schedules, dependencies, risks, and communication so that the right things ship at the right time. Technical Team Leaders bring deep engineering expertise and people leadership to guide architecture, code quality, and team growth.\n\nWe lead through clarity and influence rather than authority alone. Our days are a mix of whiteboard sessions, status updates, one-on-ones, and careful risk reviews. We protect teams from noise, unblock cross-functional dependencies, and ensure that every project ends with lessons that make the next one better.\n\nIf you join us, you will be asked to see around corners, communicate across levels, and care as much about the people as the plan. We are here to make sure Civitech Global does not just dream big, but delivers big—with quality, accountability, and a team that grows stronger with every launch.",
     "color": "text-rose-400",
     "bg": "bg-rose-500/10",
     "border": "border-rose-500/20",
     "roles": [
       {
+        "slug": "project-manager-technical-program-manager",
         "title": "Project Manager / Technical Program Manager",
         "shortTitle": "PM / TPM",
         "summary": "Technical Program Managers orchestrate complex, cross-functional technical initiatives by combining deep technical fluency with strategic program-management oversight, ensuring engineering teams deliver solutions that align with business objectives, schedules, and budgets.",
+        "story": "Project Managers and Technical Program Managers are the orchestrators who keep Civitech Global's most ambitious initiatives on track. You define program goals and success criteria, build schedules and budgets, coordinate across engineering, product, design, operations, and vendors, and relentlessly track dependencies and risks. Your communication is tailored to the audience—detailed with teams, concise with executives.\n\nStarting as a coordinator or associate TPM, you learn the company's rhythms, support scheduling, and own small workstreams. Over time, you lead medium and then high-impact programs, influence technical and product strategy, mentor peers, and eventually shape the TPM function itself. You partner with software engineers, product managers, engineering managers, QA, release engineering, executive stakeholders, and external vendors. Your superpower is making complexity feel manageable and protecting teams so they can focus on what they do best.",
         "responsibilities": [
           "Define program goals, scope, and success criteria in collaboration with senior stakeholders and product leadership.",
           "Develop and maintain comprehensive program schedules, roadmaps, and budgets to keep delivery on track.",
@@ -2188,9 +2230,11 @@ export const teams: Team[] = [
         ]
       },
       {
+        "slug": "technical-team-leader",
         "title": "Technical Team Leader",
         "shortTitle": "Tech Lead",
         "summary": "Technical Team Leaders guide engineering teams by combining hands-on technical depth with people leadership, owning architecture and code quality decisions while mentoring engineers and aligning delivery with product and business goals.",
+        "story": "Technical Team Leaders are the engineers who elevate everyone around them. You lead technical design and architecture decisions, mentor engineers through code reviews and career conversations, own delivery outcomes, set engineering standards, and balance hands-on coding with people leadership. You are both a technical authority and a culture carrier.\n\nEarly on, you build deep engineering fundamentals and deliver features independently. As you grow into senior and lead roles, you influence architecture, guide incident response, hire and onboard talent, and represent your team in cross-functional conversations. You work closely with software engineers, product managers, engineering managers, TPMs, QA, and UX designers. The best tech leads lead by example—staying close to the code, creating psychological safety, documenting decisions, and delegating ownership so the team grows stronger with every release.",
         "responsibilities": [
           "Lead technical design, architecture, and code-quality decisions for the team's domain.",
           "Mentor, coach, and develop engineers through code reviews, pair programming, and career conversations.",

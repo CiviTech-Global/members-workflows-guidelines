@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Target, BookOpen, Route, Handshake } from 'lucide-react';
 import type { Role, Team } from '../data/teams';
@@ -39,25 +40,33 @@ export default function RoleModal({ role, team, onClose }: RoleModalProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm dark:bg-slate-950/80"
     >
       <motion.div
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.95, opacity: 0, y: 20 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-slate-700 bg-slate-900 shadow-2xl"
+        className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
       >
         {/* Header */}
-        <div className="flex shrink-0 items-start justify-between border-b border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex shrink-0 items-start justify-between border-b border-slate-100 bg-slate-50/50 p-6 dark:border-slate-800 dark:bg-slate-900/50">
           <div>
             <p className={`mb-1 text-sm font-medium ${team.color}`}>{team.name}</p>
-            <h2 className="text-2xl font-bold text-slate-50 sm:text-3xl">{role.title}</h2>
-            <p className="mt-2 max-w-2xl text-slate-400">{role.summary}</p>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 sm:text-3xl">{role.title}</h2>
+            <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">{role.summary}</p>
+            <Link
+              to={`/team/${team.id}/${role.slug}`}
+              onClick={onClose}
+              className={`mt-2 inline-flex items-center gap-1 text-sm font-medium ${team.color} hover:underline`}
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              Read the full story page
+            </Link>
           </div>
           <button
             onClick={onClose}
-            className="rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-100"
+            className="rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
             aria-label="Close"
           >
             <X className="h-6 w-6" />
@@ -65,7 +74,7 @@ export default function RoleModal({ role, team, onClose }: RoleModalProps) {
         </div>
 
         {/* Tabs */}
-        <div className="shrink-0 border-b border-slate-800 bg-slate-900/50 px-6">
+        <div className="shrink-0 border-b border-slate-100 bg-slate-50/50 px-6 dark:border-slate-800 dark:bg-slate-900/50">
           <div className="flex gap-2 overflow-x-auto py-3">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -75,13 +84,15 @@ export default function RoleModal({ role, team, onClose }: RoleModalProps) {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`relative flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive ? 'text-slate-50' : 'text-slate-400 hover:text-slate-200'
+                    isActive
+                      ? 'text-slate-900 dark:text-slate-50'
+                      : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 rounded-full bg-slate-800"
+                      className="absolute inset-0 rounded-full bg-slate-200 dark:bg-slate-800"
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                   )}
@@ -96,7 +107,7 @@ export default function RoleModal({ role, team, onClose }: RoleModalProps) {
         </div>
 
         {/* Content */}
-        <div className="min-h-0 flex-1 overflow-y-auto p-6">
+        <div className="min-h-0 flex-1 overflow-y-auto bg-slate-50/30 p-6 dark:bg-slate-950/30">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -108,17 +119,17 @@ export default function RoleModal({ role, team, onClose }: RoleModalProps) {
               {activeTab === 'overview' && (
                 <div className="space-y-8">
                   <section>
-                    <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-slate-100">
-                      <Target className="h-5 w-5 text-cyan-400" />
+                    <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      <Target className={`h-5 w-5 ${team.color}`} />
                       Key Responsibilities
                     </h3>
                     <ul className="grid gap-3 sm:grid-cols-2">
                       {role.responsibilities.map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/50 p-3 text-sm text-slate-300"
+                          className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300"
                         >
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+                          <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${team.color.replace('text-', 'bg-')}`} />
                           {item}
                         </li>
                       ))}
@@ -126,26 +137,26 @@ export default function RoleModal({ role, team, onClose }: RoleModalProps) {
                   </section>
 
                   <section className="grid gap-6 md:grid-cols-2">
-                    <div>
-                      <h3 className="mb-3 text-lg font-semibold text-slate-100">Core Skills</h3>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                      <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">Core Skills</h3>
                       <div className="flex flex-wrap gap-2">
                         {role.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="rounded-lg border border-slate-700 bg-slate-950/50 px-3 py-1.5 text-sm text-slate-300"
+                            className="rounded-lg border border-slate-200 bg-slate-100 px-3 py-1.5 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950/50 dark:text-slate-300"
                           >
                             {skill}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <div>
-                      <h3 className="mb-3 text-lg font-semibold text-slate-100">Common Tools</h3>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                      <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">Common Tools</h3>
                       <div className="flex flex-wrap gap-2">
                         {role.tools.map((tool) => (
                           <span
                             key={tool}
-                            className="rounded-lg border border-slate-700 bg-slate-950/50 px-3 py-1.5 text-sm text-slate-300"
+                            className="rounded-lg border border-slate-200 bg-slate-100 px-3 py-1.5 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950/50 dark:text-slate-300"
                           >
                             {tool}
                           </span>

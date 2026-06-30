@@ -1,10 +1,11 @@
 import json
-import os
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "scripts" / "raw"
 OUT_FILE = ROOT / "site" / "src" / "data" / "teams.ts"
+STORIES_FILE = RAW_DIR / "stories.json"
 
 # Final team configuration (order matters)
 TEAM_CONFIG = [
@@ -51,7 +52,14 @@ def load_json(path: Path) -> dict:
         return json.load(f)
 
 
-def normalize_role(role: dict) -> dict:
+def slugify(text: str) -> str:
+    s = text.lower().strip()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = re.sub(r"-+", "-", s).strip("-")
+    return s or "role"
+
+
+def normalize_role(role: dict, team_id: str, stories: dict) -> dict:
     responsibilities = role.get("responsibilities") or role.get("keyResponsibilities", [])
     # Remove exact duplicates while preserving order
     seen = set()
@@ -99,10 +107,15 @@ def normalize_role(role: dict) -> dict:
             "description": item["description"],
         })
 
+    title = role["title"]
+    role_story = stories.get("roles", {}).get(team_id, {}).get(title, {}).get("story", "")
+
     return {
-        "title": role["title"],
+        "slug": slugify(title),
+        "title": title,
         "shortTitle": role["shortTitle"],
         "summary": role["summary"],
+        "story": role_story,
         "responsibilities": unique_responsibilities,
         "skills": skills,
         "tools": tools,
@@ -113,18 +126,32 @@ def normalize_role(role: dict) -> dict:
     }
 
 
-def build_team(config: dict) -> dict:
+def build_team(config: dict, stories: dict) -> dict:
+    team_id = config["id"]
     roles = []
+    used_slugs = set()
     for filename in config["files"]:
         data = load_json(RAW_DIR / filename)
         for role in data.get("roles", []):
-            roles.append(normalize_role(role))
+            normalized = normalize_role(role, team_id, stories)
+            # Ensure slug uniqueness within the team
+            base_slug = normalized["slug"]
+            slug = base_slug
+            suffix = 2
+            while slug in used_slugs:
+                slug = f"{base_slug}-{suffix}"
+                suffix += 1
+            used_slugs.add(slug)
+            normalized["slug"] = slug
+            roles.append(normalized)
 
     color = config["color"]
+    team_story = stories.get("teams", {}).get(team_id, {}).get("story", "")
     return {
-        "id": config["id"],
+        "id": team_id,
         "name": config["name"],
         "originalName": config["originalName"],
+        "story": team_story,
         "color": f"text-{color}-400",
         "bg": f"bg-{color}-500/10",
         "border": f"border-{color}-500/20",
@@ -133,7 +160,8 @@ def build_team(config: dict) -> dict:
 
 
 def main():
-    teams = [build_team(cfg) for cfg in TEAM_CONFIG]
+    stories = load_json(STORIES_FILE) if STORIES_FILE.exists() else {}
+    teams = [build_team(cfg, stories) for cfg in TEAM_CONFIG]
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 
@@ -156,9 +184,11 @@ export interface Interaction {
 }
 
 export interface Role {
+  slug: string;
   title: string;
   shortTitle: string;
   summary: string;
+  story: string;
   responsibilities: string[];
   skills: string[];
   tools: string[];
@@ -172,6 +202,7 @@ export interface Team {
   id: string;
   name: string;
   originalName: string;
+  story: string;
   color: string;
   bg: string;
   border: string;
