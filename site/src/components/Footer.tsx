@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
+import { asset } from '../lib/asset';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -8,12 +9,12 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="./assets/Colored logo.png"
+            src={asset('assets/Colored logo.png')}
             alt="Civitech Global"
             className="h-8 w-8 dark:hidden"
           />
           <img
-            src="./assets/concept logo - no bg - white.png"
+            src={asset('assets/concept logo - no bg - white.png')}
             alt="Civitech Global"
             className="hidden h-8 w-8 dark:block"
           />

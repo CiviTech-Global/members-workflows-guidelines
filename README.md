@@ -1,6 +1,6 @@
 # Civitech Global — Members, Workflows & Career Roadmaps
 
-A modern, animated landing page that introduces every team and role at **Civitech Global**, complete with career roadmaps, daily interactions, best practices, curated learning resources, and story-driven team/role pages.
+A modern, animated landing page that introduces every team and role at **Civitech Global**, complete with career roadmaps, daily interactions, best practices, curated learning resources, story-driven pages, and an open-call volunteer opportunity.
 
 ## Live site
 
@@ -10,27 +10,30 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
 
 ## What's inside
 
-- **5 professional teams** with refreshed names:
-  1. Product Strategy & Experience
-  2. Engineering & Architecture
-  3. Platform Operations & Customer Success
-  4. Revenue, Sales & Marketing
-  5. Delivery & Technical Leadership
-- **18 roles** covering product, design, engineering, operations, security, sales, marketing, partnerships, and leadership.
-- For every role:
-  - Summary and key responsibilities
-  - Core skills and common tools
-  - Career roadmap from intern / entry level to senior executive
-  - Daily interactions with other roles
-  - Best practices
-  - Curated references and resources
-  - **A story-driven narrative page** explaining the role's journey and impact
-- For every team:
-  - **A story page** that introduces the team's purpose, culture, and place in Civitech Global
-- **Light and dark themes** with a persistent toggle
-- **Quick-view modal** for roles on the home page
-- **Dedicated URL routes** for every team and role (`/team/:teamId`, `/team/:teamId/:roleSlug`)
-- **GitHub Pages SPA fallback** via `404.html`
+- **Home page** — hero, team/role counts, and portal cards to Teams, Roles, and Open Call.
+- **Teams directory** (`/teams`) — all five teams as story cards.
+- **Team story page** (`/team/:teamId`) — narrative team description + list of roles.
+- **Roles directory** (`/roles`) — searchable/filterable grid of every role.
+- **Role story page** (`/team/:teamId/:roleSlug`) — narrative role description + responsibilities, skills/tools, roadmap, interactions, best practices, and resources.
+- **Open Call page** (`/open-call`) — the part-time volunteer contributor opportunity with application form and Calendly links.
+- **Light & dark themes** with a persistent toggle.
+- **React Router** with GitHub Pages SPA fallback.
+
+### Five professional teams
+1. Product Strategy & Experience
+2. Engineering & Architecture
+3. Platform Operations & Customer Success
+4. Revenue, Sales & Marketing
+5. Delivery & Technical Leadership
+
+### For every role
+- Summary and key responsibilities
+- Core skills and common tools
+- Career roadmap from intern / entry level to senior executive
+- Daily interactions with other roles
+- Best practices
+- Curated references and resources
+- Story-driven narrative page
 
 ## Tech stack
 
@@ -53,9 +56,10 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
 │   └── raw/                       # Raw research data and generated stories
 ├── site/                          # Vite + React application
 │   ├── src/
-│   │   ├── components/            # React components (Hero, TeamSection, RoleModal, TeamPage, RolePage, etc.)
+│   │   ├── components/            # React components (Home, TeamsPage, RolesPage, TeamPage, RolePage, OpenCall, etc.)
 │   │   ├── context/ThemeContext.tsx
 │   │   ├── data/teams.ts          # Generated typed data file
+│   │   ├── lib/teamIcons.tsx      # Team icon mapping
 │   │   ├── App.tsx
 │   │   └── main.tsx
 │   ├── public/
@@ -67,6 +71,17 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
 │   └── vite.config.ts
 └── README.md
 ```
+
+## Routes
+
+| Route | Page |
+|-------|------|
+| `/` | Home |
+| `/teams` | Teams directory |
+| `/team/:teamId` | Team story |
+| `/roles` | Roles directory (search + filter) |
+| `/team/:teamId/:roleSlug` | Role story |
+| `/open-call` | Volunteer Open Call |
 
 ## Local development
 

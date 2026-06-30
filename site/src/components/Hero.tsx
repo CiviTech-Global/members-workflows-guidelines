@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Users, Briefcase } from 'lucide-react';
+import { asset } from '../lib/asset';
 
 interface HeroProps {
   teamCount: number;
@@ -36,12 +37,12 @@ export default function Hero({ teamCount, roleCount }: HeroProps) {
           className="mb-8"
         >
           <img
-            src="./assets/Colored logo.png"
+            src={asset('assets/Colored logo.png')}
             alt="Civitech Global Logo"
             className="mx-auto h-40 w-40 drop-shadow-[0_0_40px_rgba(6,182,212,0.25)] sm:h-56 sm:w-56 dark:hidden"
           />
           <img
-            src="./assets/concept logo - no bg - white.png"
+            src={asset('assets/concept logo - no bg - white.png')}
             alt="Civitech Global Logo"
             className="mx-auto hidden h-40 w-40 drop-shadow-[0_0_40px_rgba(6,182,212,0.35)] sm:h-56 sm:w-56 dark:block"
           />
