@@ -10,6 +10,7 @@ const navLinks = [
   { to: '/teams', label: 'Teams' },
   { to: '/roles', label: 'Roles' },
   { to: '/open-call', label: 'Open Call' },
+  { to: '/git-workflow', label: 'Git Workflow' },
 ];
 
 export default function TopBar() {

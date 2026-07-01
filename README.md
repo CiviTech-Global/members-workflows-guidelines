@@ -16,6 +16,7 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
 - **Roles directory** (`/roles`) — searchable/filterable grid of every role.
 - **Role story page** (`/team/:teamId/:roleSlug`) — narrative role description + responsibilities, skills/tools, roadmap, interactions, best practices, and resources.
 - **Open Call page** (`/open-call`) — the part-time volunteer contributor opportunity with application form and Calendly links.
+- **Git Workflow Guide** (`/git-workflow`) — how to fork/clone, branch, commit, push, open Pull Requests, name branches, and follow best practices.
 - **Light & dark themes** with a persistent toggle.
 - **React Router** with GitHub Pages SPA fallback.
 
@@ -82,6 +83,7 @@ Deployed automatically to **GitHub Pages** via GitHub Actions:
 | `/roles` | Roles directory (search + filter) |
 | `/team/:teamId/:roleSlug` | Role story |
 | `/open-call` | Volunteer Open Call |
+| `/git-workflow` | Git Workflow Guide |
 
 ## Local development
 

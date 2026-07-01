@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, Briefcase, Megaphone } from 'lucide-react';
+import { ArrowRight, Users, Briefcase, Megaphone, GitBranch } from 'lucide-react';
 import { teams } from '../data/teams';
 import TopBar from './TopBar';
 import Hero from './Hero';
@@ -40,6 +40,16 @@ const portals = [
     border: 'border-emerald-500/20',
     text: 'text-emerald-600 dark:text-emerald-400',
   },
+  {
+    to: '/git-workflow',
+    title: 'Git Workflow',
+    description: 'Learn how we fork, branch, commit, push, and merge code together.',
+    icon: GitBranch,
+    color: 'rose',
+    bg: 'bg-rose-500/10',
+    border: 'border-rose-500/20',
+    text: 'text-rose-600 dark:text-rose-400',
+  },
 ];
 
 export default function Home() {
@@ -65,7 +75,7 @@ export default function Home() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {portals.map((portal, index) => {
             const Icon = portal.icon;
             return (

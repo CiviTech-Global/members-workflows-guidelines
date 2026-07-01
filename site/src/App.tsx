@@ -10,6 +10,7 @@ const RolesPage = lazy(() => import('./components/RolesPage'));
 const TeamPage = lazy(() => import('./components/TeamPage'));
 const RolePage = lazy(() => import('./components/RolePage'));
 const OpenCall = lazy(() => import('./components/OpenCall'));
+const GitWorkflow = lazy(() => import('./components/GitWorkflow'));
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/team/:teamId" element={<TeamPage />} />
             <Route path="/team/:teamId/:roleSlug" element={<RolePage />} />
             <Route path="/open-call" element={<OpenCall />} />
+          <Route path="/git-workflow" element={<GitWorkflow />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
